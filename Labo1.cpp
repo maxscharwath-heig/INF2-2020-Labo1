@@ -12,17 +12,16 @@
  Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
 */
-
+#include "Temps.h"
 #include <cstdlib>
 #include <iostream>
 
 using namespace std;
 
 int main() {
+    Temps t1{5,10,45},
+          t2(24,40,45);
+    cout<<t1+t2;
 
-
-    system("PAUSE");
-    // cout << "Appuyez sur une touche pour continuer... ";
-    // while(cin.get() != '\n');
     return EXIT_SUCCESS;
 }
