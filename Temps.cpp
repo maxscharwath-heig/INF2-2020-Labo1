@@ -1,15 +1,15 @@
 /*
  -----------------------------------------------------------------------------------
- Laboratoire : <nn>
- Fichier     : <nom du fichier>.cpp
- Auteur(s)   : <prénom> <nom>
- Date        : <jj.mm.aaaa>
+ Laboratoire : Labo1
+ Fichier     : Labo 1.cpp
+ Auteur(s)   : Ganguillet, Parrino et Scharwath
+ Date        : 02.03.2020
 
- But         : <à compléter>
+ But         : TO DO
 
- Remarque(s) : <à compléter>
+ Remarque(s) : -
 
- Compilateur : MinGW-g++ <x.y.z>
+ Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
 */
 
