@@ -14,7 +14,9 @@
 */
 
 #include "Temps.h"
+#include <iomanip>
 
+using namespace std;
 
 //Constructeur init à 0
 Temps::Temps() : heures{0}, minutes{0}, secondes{0} {}
@@ -99,24 +101,24 @@ bool operator>=(const Temps &lhs, const Temps &rhs) {
 Temps &Temps::operator+=(const Temps &rhs) {
 
    secondes += rhs.secondes;
-   minutes += rhs.minutes + (secondes / 60);
-   heures += rhs.heures + (minutes / 60);
+   minutes += rhs.minutes + (secondes / NB_SECONDES);
+   heures += rhs.heures + (minutes / NB_MINUTES);
    //controle depassement
-   if (secondes >= 60) secondes %= 60;
-   if (minutes >= 60) minutes %= 60;
-   if (heures >= 24) heures %= 24;
+   if (secondes >= NB_SECONDES) secondes %= NB_SECONDES;
+   if (minutes >= NB_MINUTES) minutes %= NB_MINUTES;
+   if (heures >= NB_HEURES) heures %= NB_HEURES;
 
    return *this;
 }
 
 Temps &Temps::operator-=(const Temps &rhs) {
    secondes -= rhs.secondes;
-   minutes -= rhs.minutes + (secondes / 60);
-   heures -= rhs.heures + (minutes / 60);
+   minutes -= rhs.minutes + (secondes / NB_SECONDES);
+   heures -= rhs.heures + (minutes / NB_MINUTES);
    //controle depassement
-   if (secondes <= 60) secondes %= 60;
-   if (minutes <= 60) minutes %= 60;
-   if (heures <= 24) heures %= 24;
+   if (secondes <= NB_SECONDES) secondes %= NB_SECONDES;
+   if (minutes <= NB_MINUTES) minutes %= NB_MINUTES;
+   if (heures <= NB_HEURES) heures %= NB_HEURES;
 
    return *this;
 }
@@ -127,21 +129,25 @@ Temps operator+(Temps lhs, const Temps &rhs) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Temps &temps) {
-   os << temps.heures << ":" << temps.minutes << ":" << temps.secondes;
+   os << setfill('0') << setw(2) << temps.heures
+      << ":"
+      << setfill('0') << setw(2) << temps.minutes
+      << ":"
+      << setfill('0') << setw(2) << temps.secondes;
    return os;
 }
 
 Temps &Temps::operator++() {
    ++secondes;
-   if (secondes > 59) {
+   if (secondes >= NB_SECONDES) {
       secondes = 0;
       ++minutes;
    }
-   if (minutes > 59) {
+   if (minutes >= NB_MINUTES) {
       minutes = 0;
       ++heures;
    }
-   if (heures > 23)
+   if (heures >= NB_HEURES)
       heures = 0;
 
    return *this;
@@ -167,11 +173,11 @@ Temps Temps::operator++(int) {
  */
 Temps &Temps::operator--() {
    if (secondes < (--secondes)) {
-      secondes = 59;
+      secondes = NB_SECONDES - 1;
       if (minutes < (--minutes)) {
-         minutes = 59;
+         minutes = NB_MINUTES - 1;
          if (heures < (--heures)) {
-            heures = 23;
+            heures = NB_HEURES - 1;
          }
       }
    }

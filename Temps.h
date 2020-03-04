@@ -15,6 +15,7 @@
 
 #ifndef LABO1_TEMPS_H
 #define LABO1_TEMPS_H
+
 #include<ctime>
 #include <ostream>
 
@@ -27,59 +28,77 @@ Un opérateur -=, permettant de faire, par ex : t1 -= t2
 ---------------------------------------------------------------------------------------------*/
 
 class Temps {
-    //Operateur de comparaison (<,<=, >, >=, == et !=)
-    friend bool operator==(const Temps &lhs, const Temps &rhs);
-    friend bool operator!=(const Temps &lhs, const Temps &rhs);
-    friend bool operator<(const Temps &lhs, const Temps &rhs);
-    friend bool operator>(const Temps &lhs, const Temps &rhs);
-    friend bool operator<=(const Temps &lhs, const Temps &rhs);
-    friend bool operator>=(const Temps &lhs, const Temps &rhs);
+   //Operateur de comparaison (<,<=, >, >=, == et !=)
+   friend bool operator==(const Temps &lhs, const Temps &rhs);
 
-    friend Temps operator +(Temps lhs , const Temps& rhs);
+   friend bool operator!=(const Temps &lhs, const Temps &rhs);
 
-    //surcharge du flux format (hh:mm:ss)
-    friend std::ostream &operator<<(std::ostream &os, const Temps &temps);
+   friend bool operator<(const Temps &lhs, const Temps &rhs);
+
+   friend bool operator>(const Temps &lhs, const Temps &rhs);
+
+   friend bool operator<=(const Temps &lhs, const Temps &rhs);
+
+   friend bool operator>=(const Temps &lhs, const Temps &rhs);
+
+   friend Temps operator+(Temps lhs, const Temps &rhs);
+
+   //surcharge du flux format (hh:mm:ss)
+   friend std::ostream &operator<<(std::ostream &os, const Temps &temps);
 
 public:
 //---------------------------------CONSTRUCTEUR--------------------------------------//
-    Temps();
-    Temps(const time_t& heureCourante);
-    Temps( unsigned int heures, unsigned int minutes, unsigned int secondes = 0);
+   Temps();
+
+   Temps(const time_t &heureCourante);
+
+   Temps(unsigned int heures, unsigned int minutes, unsigned int secondes = 0);
 //-----------------------------------------------------------------------------------//
 
 //------------------------------------GETTER----------------------------------------//
-    unsigned int getHeures() const;
-    unsigned int getMinutes() const;
-    unsigned int getSecondes() const;
+   unsigned int getHeures() const;
+
+   unsigned int getMinutes() const;
+
+   unsigned int getSecondes() const;
 //---------------------------------------------------------------------------------//
 
 //---------------------------------SETTER------------------------------------------//
-    void setHeures(unsigned int heures);
-    void setMinutes(unsigned int minutes);
-    void setSecondes(unsigned int secondes);
+   void setHeures(unsigned int heures);
+
+   void setMinutes(unsigned int minutes);
+
+   void setSecondes(unsigned int secondes);
 //--------------------------------------------------------------------------------//
 
 //------------------------------FONCTION MEBRES-----------------------------------//
 
 
-    Temps& operator+=(const Temps& rhs);
-    Temps& operator-=(const Temps& rhs);
+   Temps &operator+=(const Temps &rhs);
 
-    //incrementation pre/post
-    Temps& operator++();
-    Temps operator++(int);
+   Temps &operator-=(const Temps &rhs);
 
-    //decrementation pre/post
-    Temps& operator--();
-    Temps operator--(int);
+   //incrementation pre/post
+   Temps &operator++();
+
+   Temps operator++(int);
+
+   //decrementation pre/post
+   Temps &operator--();
+
+   Temps operator--(int);
 
 //--------------------------------------------------------------------------------//
 
 private:
-    //Champs membres
-    unsigned int heures;
-    unsigned int minutes;
-    unsigned int secondes;
+   //Champs membres
+   unsigned int heures;
+   unsigned int minutes;
+   unsigned int secondes;
+
+   static unsigned int NB_HEURES = 24; // nb d'heure dans une journée
+   static unsigned int NB_MINUTES = 60;// nb d'heure dans une heure
+   static unsigned int NB_SECONDES = 60;// nb d'heure dans une minutes
 };
 
 
