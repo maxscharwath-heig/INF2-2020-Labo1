@@ -63,6 +63,7 @@ public:
 
 
     Temps& operator+=(const Temps& rhs);
+    Temps& operator-=(const Temps& rhs);
 
     //incrementation pre/post
     Temps& operator++();
