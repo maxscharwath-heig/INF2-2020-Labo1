@@ -19,9 +19,11 @@
 using namespace std;
 
 int main() {
-    Temps t1{5,10,45},
+    Temps t1{5,10,2},
           t2(24,40,45);
-    cout<<t1+t2;
+    while(true) {
+       cout << ++t1 << endl;
+    }
 
     return EXIT_SUCCESS;
 }
