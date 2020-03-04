@@ -194,4 +194,6 @@ Temps Temps::operator--(int) {
    return temps;
 }
 
-
+Temps::operator double() const { // le type de retour n'est pas specifié
+    double totalSecondes = 0;
+}
