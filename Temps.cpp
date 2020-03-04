@@ -126,7 +126,6 @@ Temps operator+(Temps lhs, const Temps &rhs) {
    return lhs;
 }
 
-
 std::ostream &operator<<(std::ostream &os, const Temps &temps) {
    os << temps.heures << ":" << temps.minutes << ":" << temps.secondes;
    return os;
@@ -134,15 +133,15 @@ std::ostream &operator<<(std::ostream &os, const Temps &temps) {
 
 Temps &Temps::operator++() {
    ++secondes;
-   if (secondes >= 60) {
+   if (secondes > 59) {
       secondes = 0;
       ++minutes;
    }
-   if (minutes >= 60) {
+   if (minutes > 59) {
       minutes = 0;
       ++heures;
    }
-   if (heures >= 24)
+   if (heures > 23)
       heures = 0;
 
    return *this;
@@ -163,20 +162,19 @@ Temps Temps::operator++(int) {
    return temps;
 }
 
+/**
+ * @return
+ */
 Temps &Temps::operator--() {
-   ++secondes;
-   //tests à revoir
-   if (secondes >= 60) {
-      secondes = 0;
-      --minutes;
+   if (secondes < (--secondes)) {
+      secondes = 59;
+      if (minutes < (--minutes)) {
+         minutes = 59;
+         if (heures < (--heures)) {
+            heures = 23;
+         }
+      }
    }
-   if (minutes >= 60) {
-      minutes = 0;
-      --heures;
-   }
-   if (heures <= 0)
-      heures = 0;
-
    return *this;
 }
 
