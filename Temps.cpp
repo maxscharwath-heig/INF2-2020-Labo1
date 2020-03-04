@@ -18,6 +18,10 @@
 
 using namespace std;
 
+unsigned int Temps::NB_HEURES = 24;
+unsigned int Temps::NB_MINUTES = 60;
+unsigned int Temps::NB_SECONDES = 60;
+
 //Constructeur init à 0
 Temps::Temps() : heures{0}, minutes{0}, secondes{0} {}
 

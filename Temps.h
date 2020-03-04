@@ -96,9 +96,9 @@ private:
    unsigned int minutes;
    unsigned int secondes;
 
-   static unsigned int NB_HEURES = 24; // nb d'heure dans une journée
-   static unsigned int NB_MINUTES = 60;// nb d'heure dans une heure
-   static unsigned int NB_SECONDES = 60;// nb d'heure dans une minutes
+   static unsigned int NB_HEURES; // nb d'heure dans une journee
+   static unsigned int NB_MINUTES;// nb d'heure dans une heure
+   static unsigned int NB_SECONDES;// nb d'heure dans une minutes
 };
 
 
