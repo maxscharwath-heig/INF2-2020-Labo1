@@ -21,17 +21,29 @@ using namespace std;
 int main() {
 
     Temps t1{5,10,2},
-          t2(24,40,45);
+          t2(24,40,45),
+          t3(12, 25, 33);
+
+    cout << boolalpha;
 
 //    friend bool operator==(const Temps &lhs, const Temps &rhs);
 
     //test operator==
     cout << t1 << " == " << t2 << " : " << (t1 == t2) << endl;
 
-
-
 //    friend bool operator!=(const Temps &lhs, const Temps &rhs);
+
+    //test operator !=
+
+    cout << t1 << " != " << t2 << " : " << (t1 != t2) << endl;
+
 //    friend bool operator<(const Temps &lhs, const Temps &rhs);
+
+    cout << t1 << " < " << t2 << "  : " << (t1 < t2) << endl;
+    cout << t1 << " > " << t2 << "  : " << (t1 > t2) << endl;
+    cout << t1 << " <= " << t2 << " : " << (t1 <= t2) << endl;
+    cout << t1 << " >= " << t2 << " : " << (t1 >= t2) << endl;
+
 //    friend bool operator>(const Temps &lhs, const Temps &rhs);
 //    friend bool operator<=(const Temps &lhs, const Temps &rhs);
 //    friend bool operator>=(const Temps &lhs, const Temps &rhs);
