@@ -42,6 +42,7 @@ class Temps {
    friend bool operator>=(const Temps &lhs, const Temps &rhs);
 
    friend Temps operator+(Temps lhs, const Temps &rhs);
+   friend Temps operator-(Temps lhs, const Temps &rhs);
 
    //surcharge du flux format (hh:mm:ss)
    friend std::ostream &operator<<(std::ostream &os, const Temps &temps);

@@ -20,10 +20,13 @@ using namespace std;
 
 int main() {
 
-    Temps t1{5,10,2},
+    Temps t1{1,30,0},
           t2(24,40,45),
           t3(12, 25, 33);
 
+    cout<<(double)t1;
+
+/*
     cout << boolalpha;
     cout << t1 << " == " << t2 << " : " << (t1 == t2) << endl;
     cout << t1 << " != " << t2 << " : " << (t1 != t2) << endl;
@@ -36,7 +39,7 @@ int main() {
 //    friend Temps operator +(Temps lhs , const Temps& rhs);
 
     cout << t1 << " + " << t2 << "  : " << (t1 + t2) << endl;
-
+*/
 
 
 //    //surcharge du flux format (hh:mm:ss)

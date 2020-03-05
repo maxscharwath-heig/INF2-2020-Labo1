@@ -77,7 +77,9 @@ bool operator!=(const Temps &lhs, const Temps &rhs) {
    return !(rhs == lhs);
 }
 
-bool operator<(const Temps &lhs, const Temps &rhs) {
+bool operator<(const Temps &lhs, const Temps &rhs) {// a choisir la meilleur
+    // return toSecondes(lhs) < toSecondes(rhs)
+    /*
    if (lhs.heures < rhs.heures)
       return true;
    if (rhs.heures < lhs.heures)
@@ -87,6 +89,7 @@ bool operator<(const Temps &lhs, const Temps &rhs) {
    if (rhs.minutes < lhs.minutes)
       return false;
    return lhs.secondes < rhs.secondes;
+     */
 }
 
 bool operator>(const Temps &lhs, const Temps &rhs) {
@@ -115,6 +118,11 @@ Temps &Temps::operator+=(const Temps &rhs) {
    return *this;
 }
 
+Temps operator+(Temps lhs, const Temps &rhs) {
+    lhs += rhs;
+    return lhs;
+}
+
 Temps &Temps::operator-=(const Temps &rhs) {
    secondes -= rhs.secondes;
    minutes -= rhs.minutes + (secondes / NB_SECONDES);
@@ -127,9 +135,9 @@ Temps &Temps::operator-=(const Temps &rhs) {
    return *this;
 }
 
-Temps operator+(Temps lhs, const Temps &rhs) {
-   lhs += rhs;
-   return lhs;
+Temps operator-(Temps lhs, const Temps &rhs) {
+    lhs -= rhs;
+    return lhs;
 }
 
 std::ostream &operator<<(std::ostream &os, const Temps &temps) {
@@ -194,6 +202,6 @@ Temps Temps::operator--(int) {
    return temps;
 }
 
-Temps::operator double() const { // le type de retour n'est pas specifié
-    double totalSecondes = 0;
+Temps::operator double() const {
+   return (double)heures + (double)minutes * 1/60 + (double)secondes * 1/3600;
 }
