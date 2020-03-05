@@ -73,7 +73,7 @@ public:
 //--------------------------------------------------------------------------------//
 
 //------------------------------FONCTION MEBRES-----------------------------------//
-    operator double() const;
+    /*explicit*/ operator double() const;
 
    Temps &operator+=(const Temps &rhs);
 

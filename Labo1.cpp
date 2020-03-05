@@ -26,7 +26,7 @@ int main() {
 
     cout<<(double)t1;
 
-/*
+
     cout << boolalpha;
     cout << t1 << " == " << t2 << " : " << (t1 == t2) << endl;
     cout << t1 << " != " << t2 << " : " << (t1 != t2) << endl;
@@ -39,7 +39,7 @@ int main() {
 //    friend Temps operator +(Temps lhs , const Temps& rhs);
 
     cout << t1 << " + " << t2 << "  : " << (t1 + t2) << endl;
-*/
+
 
 
 //    //surcharge du flux format (hh:mm:ss)
