@@ -21,7 +21,7 @@ using namespace std;
 int main() {
 
    Temps t1{5,10,2},
-         t2(24,40),
+         t2(21,40),
          t3(12, 25, 33);
 
    cout << "t1 : " << t1 << endl;
@@ -43,6 +43,7 @@ int main() {
 
    cout << "addition / multiplication :" << endl;
    cout << t1 << " + " << t2 << "  = " << (t1 + t2) << endl;
+   cout << t1 << " - " << t2 << "  = " << (t1 - t2) << endl;
    cout << endl;
 
    cout << "getters :" << endl;
