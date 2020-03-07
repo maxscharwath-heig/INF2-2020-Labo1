@@ -78,8 +78,8 @@ bool operator!=(const Temps &lhs, const Temps &rhs) {
 }
 
 bool operator<(const Temps &lhs, const Temps &rhs) {// a choisir la meilleur
-     return lhs.heures * 3600 + lhs.minutes * 60 + lhs.secondes <
-            rhs.heures * 3600 + rhs.minutes * 60 + rhs.secondes;
+    return lhs.heures * 3600 + lhs.minutes * 60 + lhs.secondes <
+           rhs.heures * 3600 + rhs.minutes * 60 + rhs.secondes;
     /*
    if (lhs.heures < rhs.heures)
       return true;
@@ -107,15 +107,17 @@ bool operator>=(const Temps &lhs, const Temps &rhs) {
 
 
 Temps &Temps::operator+=(const Temps &rhs) {
-
-   secondes += rhs.secondes;
+    secondes = abs((int)secondes - (int)rhs.secondes);
+    minutes  = abs((int)minutes - (int)rhs.minutes);
+    heures   = abs((int)heures - (int)rhs.heures);
+  /* secondes += rhs.secondes;
    minutes += rhs.minutes + (secondes / NB_SECONDES);
    heures += rhs.heures + (minutes / NB_MINUTES);
    //controle depassement
    if (secondes >= NB_SECONDES) secondes %= NB_SECONDES;
    if (minutes >= NB_MINUTES) minutes %= NB_MINUTES;
    if (heures >= NB_HEURES) heures %= NB_HEURES;
-
+*/
    return *this;
 }
 
@@ -125,14 +127,14 @@ Temps operator+(Temps lhs, const Temps &rhs) {
 }
 
 Temps &Temps::operator-=(const Temps &rhs) {
-   secondes = abs((int)secondes - (int)rhs.secondes);
-   minutes  = abs((int)minutes - (int)rhs.minutes);
-   heures   = abs((int)heures - (int)rhs.heures);
-   /*controle depassement
+   secondes -= rhs.secondes;
+   minutes -= rhs.minutes + (secondes / NB_SECONDES);
+   heures -= rhs.heures + (minutes / NB_MINUTES);
+   //controle depassement
    if (secondes <= NB_SECONDES) secondes %= NB_SECONDES;
    if (minutes <= NB_MINUTES) minutes %= NB_MINUTES;
    if (heures <= NB_HEURES) heures %= NB_HEURES;
-*/
+
    return *this;
 }
 
