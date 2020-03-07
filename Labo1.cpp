@@ -20,70 +20,47 @@ using namespace std;
 
 int main() {
 
-   Temps t1{5,10,2},
-         t2(21,40),
-         t3(12, 25, 33);
+    Temps t1{1,30,0},
+          t2(24,40,45),
+          t3(12, 25, 33);
 
-   cout << "t1 : " << t1 << endl;
-   cout << "t2 : " << t2 << endl;
-   cout << "t3 : " << t3 << endl;
-   cout << "heure courante : " << Temps(time(NULL)) << endl;
-   cout << "Constructeur par defaut : " << Temps() << endl;
+    cout<<(double)t1;
 
 
-   cout << boolalpha;
-   cout << "Comparateurs :" << endl;
-   cout << t1 << " == " << t2 << " = " << (t1 == t2) << endl;
-   cout << t1 << " != " << t2 << " = " << (t1 != t2) << endl;
-   cout << t1 << " < " << t2 << "  = " << (t1 < t2) << endl;
-   cout << t1 << " > " << t2 << "  = " << (t1 > t2) << endl;
-   cout << t1 << " <= " << t2 << " = " << (t1 <= t2) << endl;
-   cout << t1 << " >= " << t2 << " = " << (t1 >= t2) << endl;
-   cout << endl;
+    cout << boolalpha;
+    cout << t1 << " == " << t2 << " : " << (t1 == t2) << endl;
+    cout << t1 << " != " << t2 << " : " << (t1 != t2) << endl;
+    cout << t1 << " < " << t2 << "  : " << (t1 < t2) << endl;
+    cout << t1 << " > " << t2 << "  : " << (t1 > t2) << endl;
+    cout << t1 << " <= " << t2 << " : " << (t1 <= t2) << endl;
+    cout << t1 << " >= " << t2 << " : " << (t1 >= t2) << endl;
 
-   cout << "addition / multiplication :" << endl;
-   cout << t1 << " + " << t2 << "  = " << (t1 + t2) << endl;
-   cout << t1 << " - " << t2 << "  = " << (t1 - t2) << endl;
-   cout << endl;
 
-   cout << "getters :" << endl;
-   cout << "t1.getHeures()   = " << t1.getHeures() << endl;
-   cout << "t1.getMinutes()  = " << t1.getMinutes() << endl;
-   cout << "t1.getSecondes() = " << t1.getSecondes() << endl;
-   cout << endl;
+//    friend Temps operator +(Temps lhs , const Temps& rhs);
 
-   cout << "setters :" << endl;
-   t1.setHeures(1);
-   cout << "t1.setHeures(1) -> t1     = " << t1 << endl;
-   t1.setHeures(25);
-   cout << "t1.setHeures(25) -> t1    = " << t1 << endl;
-   t1.setHeures(-22);
-   cout << "t1.setHeures(-22) -> t1   = " << t1 << endl;
+    cout << t1 << " + " << t2 << "  : " << (t1 + t2) << endl;
 
-   t1.setMinutes(1);
-   cout << "t1.setMinutes(1) -> t1    = " << t1 << endl;
-   t1.setMinutes(64);
-   cout << "t1.setMinutes(64) -> t1   = " << t1 << endl;
-   t1.setMinutes(-22);
-   cout << "t1.setMinutes(-22) -> t1  = " << t1 << endl;
 
-   t1.setSecondes(1);
-   cout << "t1.setSecondes(1) -> t1   = " << t1 << endl;
-   t1.setSecondes(64);
-   cout << "t1.setSecondes(64) -> t1  = " << t1 << endl;
-   t1.setSecondes(-22);
-   cout << "t1.setSecondes(-22) -> t1 = " << t1 << endl;
-   cout << endl;
 
-   cout << "auto incrementation :" << endl;
-   cout << t1 << " += " << t2 << "  = " << (t1 += t2) << endl;
-   cout << t1 << " -= " << t2 << "  = " << (t1 -= t2) << endl;
+//    //surcharge du flux format (hh:mm:ss)
+//    friend std::ostream &operator<<(std::ostream &os, const Temps &temps);
+//    Temps();
+//    Temps(const time_t& heureCourante);
+//    Temps( unsigned int heures, unsigned int minutes, unsigned int secondes = 0);
+//    unsigned int getHeures() const;
+//    unsigned int getMinutes() const;
+//    unsigned int getSecondes() const;
+//    void setHeures(unsigned int heures);
+//    void setMinutes(unsigned int minutes);
+//    void setSecondes(unsigned int secondes);
+//    Temps& operator+=(const Temps& rhs);
+//    Temps& operator-=(const Temps& rhs);
+//    Temps& operator++();
+//    Temps operator++(int);
+//    Temps& operator--();
+//    Temps operator--(int);
 
-   cout << "++(" << t1 << ") = " << (++t1) << endl;
-   cout << '(' << t1 << ")++" << " = " << (t1++) << endl;
 
-   cout << "--(" << t1 << ") = " << (--t1) << endl;
-   cout << '(' << t1 << ")--" << " = " << (t1--) << endl;
 
-   return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
