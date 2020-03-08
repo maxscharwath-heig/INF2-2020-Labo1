@@ -210,6 +210,11 @@ private:
    static unsigned int NB_HEURES; // nb d'heures dans une journee
    static unsigned int NB_MINUTES;// nb d'minutes dans une heure
    static unsigned int NB_SECONDES;// nb de secondes dans une minutes
+
+   unsigned int dateEnSecondes() const;
+
+   void secondesEnDate(unsigned int sec);
+
 };
 
 

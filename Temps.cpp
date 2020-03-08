@@ -105,12 +105,14 @@ Temps operator+(Temps lhs, const Temps &rhs) {
 }
 
 Temps &Temps::operator-=(const Temps &rhs) {
-    secondes = abs((int)secondes - (int)rhs.secondes);
-    minutes  = abs((int)minutes  - (int)rhs.minutes);
-    heures   = abs((int)heures   - (int)rhs.heures);
-    if( secondes < rhs.secondes)  secondes = NB_SECONDES - secondes;
-    if( minutes  < rhs.minutes )  minutes  = NB_MINUTES  - minutes;
-    if( heures   < rhs.heures  )  heures   = NB_HEURES   - heures;
+    unsigned sec1 = dateEnSecondes(),
+             sec2 = rhs.dateEnSecondes();
+    cout << sec1 << ' ' << sec2 << endl;
+    if(sec1 < sec2){
+        secondesEnDate(sec2-sec1);
+    }else{
+        secondesEnDate(sec1-sec2);
+    }
    return *this;
 }
 
@@ -183,4 +185,14 @@ Temps Temps::operator--(int) {
 
 Temps::operator double() const {
    return (double)heures + (double)minutes * 1/60 + (double)secondes * 1/3600;
+}
+
+unsigned int Temps::dateEnSecondes() const {
+    return heures*3600 + minutes * 60 + secondes;
+}
+
+void Temps::secondesEnDate(unsigned int sec) {
+    heures = sec / 3600 % 24;
+    minutes = sec / 60 % 60;
+    secondes = sec % 60;
 }
