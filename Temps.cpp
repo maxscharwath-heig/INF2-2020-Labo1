@@ -107,17 +107,15 @@ bool operator>=(const Temps &lhs, const Temps &rhs) {
 
 
 Temps &Temps::operator+=(const Temps &rhs) {
-    secondes = abs((int)secondes - (int)rhs.secondes);
-    minutes  = abs((int)minutes - (int)rhs.minutes);
-    heures   = abs((int)heures - (int)rhs.heures);
-  /* secondes += rhs.secondes;
+
+   secondes += rhs.secondes;
    minutes += rhs.minutes + (secondes / NB_SECONDES);
    heures += rhs.heures + (minutes / NB_MINUTES);
    //controle depassement
    if (secondes >= NB_SECONDES) secondes %= NB_SECONDES;
    if (minutes >= NB_MINUTES) minutes %= NB_MINUTES;
    if (heures >= NB_HEURES) heures %= NB_HEURES;
-*/
+
    return *this;
 }
 
@@ -127,14 +125,17 @@ Temps operator+(Temps lhs, const Temps &rhs) {
 }
 
 Temps &Temps::operator-=(const Temps &rhs) {
-   secondes -= rhs.secondes;
+    secondes = abs((int)secondes - (int)rhs.secondes);
+    minutes  = abs((int)minutes - (int)rhs.minutes);
+    heures   = abs((int)heures - (int)rhs.heures);
+/*   secondes -= rhs.secondes;
    minutes -= rhs.minutes + (secondes / NB_SECONDES);
    heures -= rhs.heures + (minutes / NB_MINUTES);
    //controle depassement
    if (secondes <= NB_SECONDES) secondes %= NB_SECONDES;
    if (minutes <= NB_MINUTES) minutes %= NB_MINUTES;
    if (heures <= NB_HEURES) heures %= NB_HEURES;
-
+*/
    return *this;
 }
 
