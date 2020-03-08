@@ -18,9 +18,7 @@
 
 using namespace std;
 
-unsigned int Temps::NB_HEURES = 24;
-unsigned int Temps::NB_MINUTES = 60;
-unsigned int Temps::NB_SECONDES = 60;
+unsigned int Temps::NB_SECONDES_JOUR = 86400;
 
 Temps::Temps() : heures{0}, minutes{0}, secondes{0} {}
 
@@ -30,8 +28,8 @@ Temps::Temps(unsigned int heures, unsigned int minutes, unsigned int secondes)
 
 Temps::Temps(const time_t &tempsCourante) {
    tm *now = localtime(&tempsCourante);
-   heures   = (unsigned int) now->tm_hour;
-   minutes  = (unsigned int) now->tm_min;
+   heures = (unsigned int) now->tm_hour;
+   minutes = (unsigned int) now->tm_min;
    secondes = (unsigned int) now->tm_sec;
 }
 
@@ -60,9 +58,7 @@ void Temps::setSecondes(unsigned int secondes) {
 }
 
 bool operator==(const Temps &lhs, const Temps &rhs) {
-   return lhs.heures   == rhs.heures  &&
-          lhs.minutes  == rhs.minutes &&
-          lhs.secondes == rhs.secondes;
+   return lhs.tempsEnSecondes() == rhs.tempsEnSecondes();
 }
 
 bool operator!=(const Temps &lhs, const Temps &rhs) {
@@ -70,8 +66,7 @@ bool operator!=(const Temps &lhs, const Temps &rhs) {
 }
 
 bool operator<(const Temps &lhs, const Temps &rhs) {// a choisir la meilleur
-    return lhs.heures * 3600 + lhs.minutes * 60 + lhs.secondes <
-           rhs.heures * 3600 + rhs.minutes * 60 + rhs.secondes;
+   return lhs.tempsEnSecondes() < rhs.tempsEnSecondes();
 }
 
 bool operator>(const Temps &lhs, const Temps &rhs) {
@@ -88,37 +83,27 @@ bool operator>=(const Temps &lhs, const Temps &rhs) {
 
 
 Temps &Temps::operator+=(const Temps &rhs) {
-   secondes += rhs.secondes;
-   minutes += rhs.minutes + (secondes / NB_SECONDES);
-   heures += rhs.heures + (minutes / NB_MINUTES);
-   //controle depassement
-   if (secondes >= NB_SECONDES) secondes %= NB_SECONDES;
-   if (minutes >= NB_MINUTES) minutes %= NB_MINUTES;
-   if (heures >= NB_HEURES) heures %= NB_HEURES;
 
-   return *this;
+   return secondesEnTemps(tempsEnSecondes() + rhs.tempsEnSecondes());
 }
 
 Temps operator+(Temps lhs, const Temps &rhs) {
-    lhs += rhs;
-    return lhs;
+   lhs += rhs;
+   return lhs;
 }
 
 Temps &Temps::operator-=(const Temps &rhs) {
-    unsigned sec1 = dateEnSecondes(),
-             sec2 = rhs.dateEnSecondes();
-    cout << sec1 << ' ' << sec2 << endl;
-    if(sec1 < sec2){
-        secondesEnDate(sec2-sec1);
-    }else{
-        secondesEnDate(sec1-sec2);
-    }
-   return *this;
+   unsigned sec1 = tempsEnSecondes(),
+         sec2 = rhs.tempsEnSecondes();
+   if (sec1 > sec2) {
+      return secondesEnTemps(sec1 - sec2);
+   }
+   return secondesEnTemps(NB_SECONDES_JOUR + sec1 - sec2);
 }
 
 Temps operator-(Temps lhs, const Temps &rhs) {
-    lhs -= rhs;
-    return lhs;
+   lhs -= rhs;
+   return lhs;
 }
 
 //setfill('0') << setw(2) permet de mettre un zero si le nombre est plus petit que 10
@@ -132,28 +117,8 @@ ostream &operator<<(ostream &os, const Temps &temps) {
 }
 
 Temps &Temps::operator++() {
-   ++secondes;
-   if (secondes >= NB_SECONDES) {
-      secondes = 0;
-      ++minutes;
-   }
-   if (minutes >= NB_MINUTES) {
-      minutes = 0;
-      ++heures;
-   }
-   if (heures >= NB_HEURES)
-      heures = 0;
-
-   return *this;
+   return secondesEnTemps(tempsEnSecondes() + 1);
 }
-
-/* Methode alternative triche a choisir la meilleur
- * Temps& Temps::operator++(){
- *  Temps t{0,0,1};
- *  *this += t;
- *  return *this;
-}
- */
 
 Temps Temps::operator++(int) {
    Temps temps = *this;
@@ -161,20 +126,12 @@ Temps Temps::operator++(int) {
    return temps;
 }
 
-/**
- * @return
- */
 Temps &Temps::operator--() {
-   if (secondes < --secondes) {
-      secondes = NB_SECONDES - 1;
-      if (minutes < --minutes) {
-         minutes = NB_MINUTES - 1;
-         if (heures < --heures) {
-            heures = NB_HEURES - 1;
-         }
-      }
+   unsigned int sec = tempsEnSecondes();
+   if (sec) { //sec != 0
+      return secondesEnTemps(sec - 1);
    }
-   return *this;
+   return secondesEnTemps(NB_SECONDES_JOUR - 1);
 }
 
 Temps Temps::operator--(int) {
@@ -184,15 +141,16 @@ Temps Temps::operator--(int) {
 }
 
 Temps::operator double() const {
-   return (double)heures + (double)minutes * 1/60 + (double)secondes * 1/3600;
+   return (double) heures + (double) minutes * 1 / 60. + (double) secondes * 1 / 3600.;
 }
 
-unsigned int Temps::dateEnSecondes() const {
-    return heures*3600 + minutes * 60 + secondes;
+unsigned int Temps::tempsEnSecondes() const {
+   return heures * 3600 + minutes * 60 + secondes;
 }
 
-void Temps::secondesEnDate(unsigned int sec) {
-    heures = sec / 3600 % 24;
-    minutes = sec / 60 % 60;
-    secondes = sec % 60;
+Temps &Temps::secondesEnTemps(unsigned int tempsEnSecondes) {
+   heures = tempsEnSecondes / 3600 % 24;
+   minutes = tempsEnSecondes / 60 % 60;
+   secondes = tempsEnSecondes % 60;
+   return *this;
 }

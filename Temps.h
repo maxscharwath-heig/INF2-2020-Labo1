@@ -95,18 +95,20 @@ class Temps {
 public:
 //---------------------------------CONSTRUCTEUR------------------------------------//
    /**
-    * Constructeur par défaut où tous est initialisé à 0
+    * Constructeur par défaut où tout est initialisé à 0
     */
    Temps();
 
    /**
-    *
+    * initialisation avec un objet de type time_t
+    * @example Temps t1 = time(NULL);
+    *          Temps t1(time(NULL));
     * @param heureCourante
     */
    Temps(const time_t &heureCourante);
 
    /**
-    *
+    * initialisation avec heures, minutes, secondes optionnel
     * @param heures
     * @param minutes
     * @param secondes
@@ -116,39 +118,39 @@ public:
 
 //------------------------------------GETTER---------------------------------------//
    /**
-    *
-    * @return
+    * getter des heures
+    * @return l'heure
     */
    unsigned int getHeures() const;
 
    /**
-    *
-    * @return
+    * getter des minutes
+    * @return les minutes
     */
    unsigned int getMinutes() const;
 
    /**
-    *
-    * @return
+    * getter des secondes
+    * @return les secondes
     */
    unsigned int getSecondes() const;
 //---------------------------------------------------------------------------------//
 
 //---------------------------------SETTER------------------------------------------//
    /**
-    *
+    * setter des heures
     * @param heures
     */
    void setHeures(unsigned int heures);
 
    /**
-    *
+    * setter des minutes
     * @param minutes
     */
    void setMinutes(unsigned int minutes);
 
    /**
-    *
+    * setter des secondes
     * @param secondes
     */
    void setSecondes(unsigned int secondes);
@@ -156,64 +158,71 @@ public:
 
 //------------------------------FONCTION MEBRES-----------------------------------//
    /**
-    *
-    * @return
+    * converti en temps décimal exprimé en heures
+    * @return double heures en décimal
     */
-   /*explicit*/ operator double() const;
+    explicit operator double() const;
 
    /**
-    *
-    * @param rhs
-    * @return
+    * surcharge de l'opérateur +=
+    * @param rhs Temps à rajouter
+    * @return Temps
     */
    Temps &operator+=(const Temps &rhs);
 
    /**
-    *
-    * @param rhs
-    * @return
+    * surcharge de l'opérateur -=
+    * @param rhs Temps à soustraire
+    * @return Temps
     */
    Temps &operator-=(const Temps &rhs);
 
    /**
-    * incrementation pre/post
-    * @return
+    * pre-incrementation de Temps
+    * @return Temps
     */
    Temps &operator++();
 
    /**
-    *
-    * @return
+    * post-incrémentation de Temps
+    * @return Temps
     */
    Temps operator++(int);
 
    /**
-    * decrementation pre/post
-    * @return
+    * pre-decrementation de Temps
+    * @return Temps
     */
    Temps &operator--();
 
    /**
-    *
-    * @return
+    * post-decrementation de Temps
+    * @return Temps
     */
    Temps operator--(int);
 
 //--------------------------------------------------------------------------------//
 
 private:
-   //Champs membres
+
    unsigned int heures;
    unsigned int minutes;
    unsigned int secondes;
 
-   static unsigned int NB_HEURES; // nb d'heures dans une journee
-   static unsigned int NB_MINUTES;// nb d'minutes dans une heure
-   static unsigned int NB_SECONDES;// nb de secondes dans une minutes
+   static unsigned int NB_SECONDES_JOUR; // nombre de secondes dans une journée
 
-   unsigned int dateEnSecondes() const;
+   /**
+    * calcule le Temps en secondes
+    * @return nombre de secondes
+    */
+   unsigned int tempsEnSecondes() const;
 
-   void secondesEnDate(unsigned int sec);
+   /**
+    * actualise les champs membres de Temps
+    * @param tempsEnSecondes
+    * @return Temps actualisé
+    */
+   Temps &secondesEnTemps(unsigned int tempsEnSecondes);
 
 };
 
