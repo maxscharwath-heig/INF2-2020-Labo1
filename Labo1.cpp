@@ -58,7 +58,7 @@ int main() {
    t1.setMinutes(12);
    cout << "t1.setMinutes(12)  -> t1 = " << t1 << endl;
    t1.setSecondes(30);
-   cout << "t1.setSecondes(30) -> t1 = " << t2 << endl;
+   cout << "t1.setSecondes(30) -> t1 = " << t1 << endl;
    cout << endl;
 
    cout << "auto incrementation :" << endl;
