@@ -107,8 +107,7 @@ bool operator>=(const Temps &lhs, const Temps &rhs) {
 
 
 Temps &Temps::operator+=(const Temps &rhs) {
-
-   secondes += rhs.secondes;
+    secondes += rhs.secondes;
    minutes += rhs.minutes + (secondes / NB_SECONDES);
    heures += rhs.heures + (minutes / NB_MINUTES);
    //controle depassement
