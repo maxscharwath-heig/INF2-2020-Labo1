@@ -1,11 +1,11 @@
 /*
  -----------------------------------------------------------------------------------
  Laboratoire : Labo1
- Fichier     : Labo 1.cpp
+ Fichier     : Labo1.cpp
  Auteur(s)   : Ganguillet, Parrino et Scharwath
  Date        : 02.03.2020
 
- But         : TO DO
+ But         : Ce programme teste les différentes fonctionnalités de la classe temps.
 
  Remarque(s) : -
 
@@ -56,9 +56,9 @@ int main() {
    t1.setHeures(10);
    cout << "t1.setHeures(10)   -> t1 = " << t1 << endl;
    t1.setMinutes(12);
-   cout << "t1.setMinutes(12)  -> t1 = " << t1 << endl;
+   cout << "t1.setMinutes(12)  -> t1 = " << t2 << endl;
    t1.setSecondes(30);
-   cout << "t1.setSecondes(30) -> t1 = " << t1 << endl;
+   cout << "t1.setSecondes(30) -> t1 = " << t3 << endl;
    cout << endl;
 
    cout << "auto incrementation :" << endl;
@@ -66,10 +66,14 @@ int main() {
    cout << t1 << " -= " << t2 << "  = " << (t1 -= t2) << endl;
 
    cout << "++(" << t1 << ") = " << (++t1) << endl;
-   cout << '(' << t1 << ")++" << " = " << (t1++) << endl;
+   cout << '(' << t1 << ")++ = " << (t1++) << endl;
 
    cout << "--(" << t1 << ") = " << (--t1) << endl;
-   cout << '(' << t1 << ")--" << " = " << (t1--) << endl;
+   cout << '(' << t1 << ")-- = " << (t1--) << endl;
+   cout << endl;
+
+   cout << "conversion :" << endl;
+   cout << "double (" << t3 << ") = " << double(t3) << endl;
 
    return EXIT_SUCCESS;
 }
