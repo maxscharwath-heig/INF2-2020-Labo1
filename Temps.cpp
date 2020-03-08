@@ -163,11 +163,11 @@ Temps Temps::operator++(int) {
  * @return
  */
 Temps &Temps::operator--() {
-   if (secondes < (--secondes)) {
+   if (secondes < --secondes) {
       secondes = NB_SECONDES - 1;
-      if (minutes < (--minutes)) {
+      if (minutes < --minutes) {
          minutes = NB_MINUTES - 1;
-         if (heures < (--heures)) {
+         if (heures < --heures) {
             heures = NB_HEURES - 1;
          }
       }
