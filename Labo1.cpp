@@ -21,35 +21,36 @@ using namespace std;
 
 int main() {
 
-   Temps t1{5, 10, 2},
-         t2(1, 40),
+   Temps t1{ 5, 10, 2},
+         t2( 1, 40),
          t3(12, 25, 33);
 
    cout << "t1 : " << t1 << endl;
    cout << "t2 : " << t2 << endl;
    cout << "t3 : " << t3 << endl;
    cout << "heure courante : " << Temps(time(NULL)) << endl;
-   cout << "Constructeur par defaut : " << Temps() << endl;
+   cout << "Constructeur par defaut : " << Temps()  << endl;
+   cout << endl;
 
    cout << boolalpha;
    cout << "Comparateurs :" << endl;
    cout << t1 << " == " << t2 << " = " << (t1 == t2) << endl;
    cout << t2 << " == " << t2 << " = " << (t2 == t2) << endl;
    cout << t1 << " != " << t2 << " = " << (t1 != t2) << endl;
-   cout << t1 << " < " << t2 << "  = " << (t1 < t2)  << endl;
-   cout << t1 << " > " << t2 << "  = " << (t1 > t2)  << endl;
+   cout << t1 << " <  " << t2 << " = " << (t1 < t2)  << endl;
+   cout << t1 << " >  " << t2 << " = " << (t1 > t2)  << endl;
    cout << t1 << " <= " << t2 << " = " << (t1 <= t2) << endl;
    cout << t1 << " >= " << t2 << " = " << (t1 >= t2) << endl;
    cout << endl;
 
    cout << "addition / soustraction :" << endl;
-   cout << t1 << " + " << t2 << "  = " << (t1 + t2) << endl;
-   cout << t1 << " - " << t2 << "  = " << (t1 - t2) << endl;
+   cout << t1 << " + " << t2 << " = " << (t1 + t2) << endl;
+   cout << t1 << " - " << t2 << " = " << (t1 - t2) << endl;
    cout << endl;
 
    cout << "getters :" << endl;
-   cout << "t1.getHeures()   = " << t1.getHeures() << endl;
-   cout << "t1.getMinutes()  = " << t1.getMinutes() << endl;
+   cout << "t1.getHeures()   = " << t1.getHeures()   << endl;
+   cout << "t1.getMinutes()  = " << t1.getMinutes()  << endl;
    cout << "t1.getSecondes() = " << t1.getSecondes() << endl;
    cout << endl;
 
@@ -63,24 +64,19 @@ int main() {
    cout << endl;
 
    cout << "auto incrementation :" << endl;
-   cout << t1 << " += " << t3 << " = ";
-   cout << (t1 += t3) << endl;
-   cout << t1 << " -= " << t3 << " = ";
-   cout << (t1 -= t3) << endl;
+   cout << t1 << " += " << t3 << " = "; cout << (t1 += t3) << endl;
+   cout << t1 << " -= " << t3 << " = "; cout << (t1 -= t3) << endl;
 
-   cout << "++(" << t1 << ") = ";
-   cout << (++t1) << endl;
-   cout << '(' << t1 << ")++ = ";
-   cout << (t1++) << endl;
+   cout << "++(" << t1 << ") = "; cout << (++t1) << endl;
+   cout << '(' << t1 << ")++ = "; cout << (t1++) << endl;
 
-   cout << "--(" << t1 << ") = ";
-   cout << (--t1) << endl;
-   cout << '(' << t1 << ")-- = ";
-   cout << (t1--) << endl;
+   cout << "--(" << t1 << ") = "; cout << (--t1) << endl;
+   cout << '(' << t1 << ")-- = "; cout << (t1--) << endl;
    cout << endl;
 
    cout << "conversion :" << endl;
    cout << "double (" << t3 << ") = " << double(t3) << endl;
 
+   system("PAUSE");
    return EXIT_SUCCESS;
 }

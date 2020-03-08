@@ -31,9 +31,9 @@ Temps::Temps(unsigned int heures, unsigned int minutes, unsigned int secondes)
 
 
 Temps::Temps(const time_t &tempsCourante) {
-   tm *now = localtime(&tempsCourante);
-   heures = (unsigned int) now->tm_hour;
-   minutes = (unsigned int) now->tm_min;
+   tm *now  = localtime(&tempsCourante);
+   heures   = (unsigned int) now->tm_hour;
+   minutes  = (unsigned int) now->tm_min;
    secondes = (unsigned int) now->tm_sec;
 }
 
@@ -69,7 +69,7 @@ bool operator!=(const Temps &lhs, const Temps &rhs) {
    return !(rhs == lhs);
 }
 
-bool operator<(const Temps &lhs, const Temps &rhs) {// a choisir la meilleur
+bool operator<(const Temps &lhs, const Temps &rhs) {
    return lhs.tempsEnSecondes() < rhs.tempsEnSecondes();
 }
 
@@ -85,9 +85,7 @@ bool operator>=(const Temps &lhs, const Temps &rhs) {
    return !(lhs < rhs);
 }
 
-
 Temps &Temps::operator+=(const Temps &rhs) {
-
    return secondesEnTemps(tempsEnSecondes() + rhs.tempsEnSecondes());
 }
 
@@ -98,7 +96,7 @@ Temps operator+(Temps lhs, const Temps &rhs) {
 
 Temps &Temps::operator-=(const Temps &rhs) {
    unsigned sec1 = tempsEnSecondes(),
-         sec2 = rhs.tempsEnSecondes();
+            sec2 = rhs.tempsEnSecondes();
    if (sec1 > sec2) {
       return secondesEnTemps(sec1 - sec2);
    }
@@ -112,10 +110,8 @@ Temps operator-(Temps lhs, const Temps &rhs) {
 
 //setfill('0') << setw(2) permet de mettre un zero si le nombre est plus petit que 10
 ostream &operator<<(ostream &os, const Temps &temps) {
-   os << setfill('0') << setw(2) << temps.heures
-      << ":"
-      << setfill('0') << setw(2) << temps.minutes
-      << ":"
+   os << setfill('0') << setw(2) << temps.heures  << ":"
+      << setfill('0') << setw(2) << temps.minutes << ":"
       << setfill('0') << setw(2) << temps.secondes;
    return os;
 }
@@ -132,10 +128,7 @@ Temps Temps::operator++(int) {
 
 Temps &Temps::operator--() {
    unsigned int sec = tempsEnSecondes();
-   if (sec) { //sec != 0
-      return secondesEnTemps(sec - 1);
-   }
-   return secondesEnTemps(NB_SECONDES_JOUR - 1);
+   return secondesEnTemps( (sec ? sec : NB_SECONDES_JOUR) - 1);
 }
 
 Temps Temps::operator--(int) {
