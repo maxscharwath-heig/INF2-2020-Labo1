@@ -22,24 +22,16 @@ unsigned int Temps::NB_HEURES = 24;
 unsigned int Temps::NB_MINUTES = 60;
 unsigned int Temps::NB_SECONDES = 60;
 
-//Constructeur init à 0
 Temps::Temps() : heures{0}, minutes{0}, secondes{0} {}
 
-/* Variante de Temps() a choisir la meilleur
-Temps::Temps()
-{ hour = min = sec = 0;
-}
- */
-
-//Constructeur 3 parametres avec secondes = 0 par defaut
 Temps::Temps(unsigned int heures, unsigned int minutes, unsigned int secondes)
       : heures{heures}, minutes{minutes}, secondes{secondes} {}
 
-//Constructeur avec struct de tipe time_t
+
 Temps::Temps(const time_t &tempsCourante) {
    tm *now = localtime(&tempsCourante);
-   heures = (unsigned int) now->tm_hour;
-   minutes = (unsigned int) now->tm_min;
+   heures   = (unsigned int) now->tm_hour;
+   minutes  = (unsigned int) now->tm_min;
    secondes = (unsigned int) now->tm_sec;
 }
 
@@ -56,20 +48,20 @@ unsigned int Temps::getSecondes() const {
 }
 
 void Temps::setHeures(unsigned int heures) {
-   Temps::heures = heures;
+   this->heures = heures;
 }
 
 void Temps::setMinutes(unsigned int minutes) {
-   Temps::minutes = minutes;
+   this->minutes = minutes;
 }
 
 void Temps::setSecondes(unsigned int secondes) {
-   Temps::secondes = secondes;
+   this->secondes = secondes;
 }
 
 bool operator==(const Temps &lhs, const Temps &rhs) {
-   return lhs.heures == rhs.heures &&
-          lhs.minutes == rhs.minutes &&
+   return lhs.heures   == rhs.heures  &&
+          lhs.minutes  == rhs.minutes &&
           lhs.secondes == rhs.secondes;
 }
 
@@ -80,17 +72,6 @@ bool operator!=(const Temps &lhs, const Temps &rhs) {
 bool operator<(const Temps &lhs, const Temps &rhs) {// a choisir la meilleur
     return lhs.heures * 3600 + lhs.minutes * 60 + lhs.secondes <
            rhs.heures * 3600 + rhs.minutes * 60 + rhs.secondes;
-    /*
-   if (lhs.heures < rhs.heures)
-      return true;
-   if (rhs.heures < lhs.heures)
-      return false;
-   if (lhs.minutes < rhs.minutes)
-      return true;
-   if (rhs.minutes < lhs.minutes)
-      return false;
-   return lhs.secondes < rhs.secondes;
-     */
 }
 
 bool operator>(const Temps &lhs, const Temps &rhs) {
@@ -138,7 +119,8 @@ Temps operator-(Temps lhs, const Temps &rhs) {
     return lhs;
 }
 
-std::ostream &operator<<(std::ostream &os, const Temps &temps) {
+//setfill('0') << setw(2) permet de mettre un zero si le nombre est plus petit que 10
+ostream &operator<<(ostream &os, const Temps &temps) {
    os << setfill('0') << setw(2) << temps.heures
       << ":"
       << setfill('0') << setw(2) << temps.minutes
@@ -161,7 +143,6 @@ Temps &Temps::operator++() {
       heures = 0;
 
    return *this;
-
 }
 
 /* Methode alternative triche a choisir la meilleur
