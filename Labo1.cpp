@@ -53,26 +53,12 @@ int main() {
    cout << endl;
 
    cout << "setters :" << endl;
-   t1.setHeures(1);
-   cout << "t1.setHeures(1) -> t1     = " << t1 << endl;
-   t1.setHeures(25);
-   cout << "t1.setHeures(25) -> t1    = " << t1 << endl;
-   t1.setHeures(-22);
-   cout << "t1.setHeures(-22) -> t1   = " << t1 << endl;
-
-   t1.setMinutes(1);
-   cout << "t1.setMinutes(1) -> t1    = " << t1 << endl;
-   t1.setMinutes(64);
-   cout << "t1.setMinutes(64) -> t1   = " << t1 << endl;
-   t1.setMinutes(-22);
-   cout << "t1.setMinutes(-22) -> t1  = " << t1 << endl;
-
-   t1.setSecondes(1);
-   cout << "t1.setSecondes(1) -> t1   = " << t1 << endl;
-   t1.setSecondes(64);
-   cout << "t1.setSecondes(64) -> t1  = " << t1 << endl;
-   t1.setSecondes(-22);
-   cout << "t1.setSecondes(-22) -> t1 = " << t1 << endl;
+   t1.setHeures(10);
+   cout << "t1.setHeures(10)   -> t1 = " << t1 << endl;
+   t1.setMinutes(12);
+   cout << "t1.setMinutes(12)  -> t1 = " << t1 << endl;
+   t1.setSecondes(30);
+   cout << "t1.setSecondes(30) -> t1 = " << t1 << endl;
    cout << endl;
 
    cout << "auto incrementation :" << endl;
