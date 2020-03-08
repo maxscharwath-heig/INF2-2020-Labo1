@@ -5,9 +5,10 @@
  Auteur(s)   : Ganguillet, Parrino et Scharwath
  Date        : 02.03.2020
 
- But         : Ce programme teste les différentes fonctionnalités de la classe temps.
+ But         : Ce programme teste les différentes fonctionnalités de la classe Temps.
 
- Remarque(s) : -
+ Remarque(s) : Ce test a été fait avec des valeurs de temps réelles (heures [0-23],
+               minutes et secondes [0-59])
 
  Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ using namespace std;
 int main() {
 
    Temps t1{5, 10, 2},
-         t2(21, 40),
+         t2(1, 40),
          t3(12, 25, 33);
 
    cout << "t1 : " << t1 << endl;
@@ -29,7 +30,6 @@ int main() {
    cout << "t3 : " << t3 << endl;
    cout << "heure courante : " << Temps(time(NULL)) << endl;
    cout << "Constructeur par defaut : " << Temps() << endl;
-
 
    cout << boolalpha;
    cout << "Comparateurs :" << endl;

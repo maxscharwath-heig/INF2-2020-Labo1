@@ -5,9 +5,13 @@
  Auteur(s)   : Ganguillet, Parrino et Scharwath
  Date        : 02.03.2020
 
- But         : TO DO
+ But         : Implémentation de la classe Temps.
 
- Remarque(s) : -
+ Remarque(s) : La majorité des calculs se fait en convertissant le temps en secondes.
+               Si les valeurs membres ne sont pas comprises dans les bornes [0-23] pour les
+               heures, [0-59] pour les minutes et les secondes, certaines fonctions vont
+               redimentionner ces valeurs dans leurs bornes respectives, sans toutefois
+               garantir la cohérance des résultats.
 
  Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
@@ -18,7 +22,7 @@
 
 using namespace std;
 
-unsigned int Temps::NB_SECONDES_JOUR = 86400;
+unsigned int Temps::NB_SECONDES_JOUR = 86400; // = 60*60*24
 
 Temps::Temps() : heures{0}, minutes{0}, secondes{0} {}
 
@@ -145,12 +149,13 @@ Temps::operator double() const {
 }
 
 unsigned int Temps::tempsEnSecondes() const {
-   return heures * 3600 + minutes * 60 + secondes;
+   //converti Temps en nombre de secondes compris entre 0 et NB_SECONDES_JOUR
+   return (heures * 3600 + minutes * 60 + secondes) % NB_SECONDES_JOUR;
 }
 
 Temps &Temps::secondesEnTemps(unsigned int tempsEnSecondes) {
-   heures = tempsEnSecondes / 3600 % 24;
-   minutes = tempsEnSecondes / 60 % 60;
-   secondes = tempsEnSecondes % 60;
+   heures   = tempsEnSecondes / 3600 % 24;   //converti en heures [0-23]
+   minutes  = tempsEnSecondes / 60 % 60;     //converti en minutes [0-59]
+   secondes = tempsEnSecondes % 60;          //converti en secondes [0-59]
    return *this;
 }
