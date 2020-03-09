@@ -22,7 +22,11 @@
 
 using namespace std;
 
-unsigned int Temps::NB_SECONDES_JOUR = 86400; // = 60*60*24
+unsigned int Temps::NB_SECONDES        = 60;
+unsigned int Temps::NB_MINUTES         = 60;
+unsigned int Temps::NB_HEURES          = 24;
+unsigned int Temps::NB_SECONDES_HEURES = 3600;  // = 60*60
+unsigned int Temps::NB_SECONDES_JOUR   = 86400; // = 60*60*24
 
 Temps::Temps() : heures{0}, minutes{0}, secondes{0} {}
 
@@ -143,12 +147,12 @@ Temps::operator double() const {
 
 unsigned int Temps::tempsEnSecondes() const {
    //converti Temps en nombre de secondes compris entre 0 et NB_SECONDES_JOUR
-   return (heures * 3600 + minutes * 60 + secondes) % NB_SECONDES_JOUR;
+   return (heures * NB_SECONDES_HEURES + minutes * NB_MINUTES + secondes) % NB_SECONDES_JOUR;
 }
 
 Temps &Temps::secondesEnTemps(unsigned int tempsEnSecondes) {
-   heures   = tempsEnSecondes / 3600 % 24;   //converti en heures [0-23]
-   minutes  = tempsEnSecondes / 60 % 60;     //converti en minutes [0-59]
-   secondes = tempsEnSecondes % 60;          //converti en secondes [0-59]
+   heures   = tempsEnSecondes / NB_SECONDES_HEURES % NB_HEURES;   //converti en heures [0-23]
+   minutes  = tempsEnSecondes / NB_SECONDES % NB_MINUTES;         //converti en minutes [0-59]
+   secondes = tempsEnSecondes % NB_SECONDES;                      //converti en secondes [0-59]
    return *this;
 }
