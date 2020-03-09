@@ -142,7 +142,8 @@ Temps Temps::operator--(int) {
 }
 
 Temps::operator double() const {
-   return (double) heures + (double) minutes * 1 / 60. + (double) secondes * 1 / 3600.;
+   return (double) heures + (double) minutes * 1. / NB_MINUTES + (double) secondes * 1. /
+   NB_SECONDES_HEURES;
 }
 
 unsigned int Temps::tempsEnSecondes() const {
