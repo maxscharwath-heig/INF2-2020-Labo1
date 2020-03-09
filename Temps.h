@@ -219,9 +219,9 @@ private:
    unsigned int minutes;
    unsigned int secondes;
 
-   static unsigned int NB_SECONDES;
-   static unsigned int NB_MINUTES;
-   static unsigned int NB_HEURES;
+   static unsigned int NB_SECONDES;          // nombre de secondes dans une minute
+   static unsigned int NB_MINUTES;           // nombre de minutes dans une heure
+   static unsigned int NB_HEURES;            // nombre d'heures dans une journée
    static unsigned int NB_SECONDES_HEURES;   // nombre de secondes dans une heure
    static unsigned int NB_SECONDES_JOUR;     // nombre de secondes dans une journée
 
